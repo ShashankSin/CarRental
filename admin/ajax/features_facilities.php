@@ -80,9 +80,3 @@ if(isset($_POST['get_feature'])){
 
 }
 
-// edit_feature
-if(isset($_GET['edit_features'])){
-    
-}
-
-?>

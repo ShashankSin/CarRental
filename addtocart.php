@@ -42,13 +42,6 @@
         <div class="car-description">
           <h1>Rolls Royce</h1>
           <span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
             <a href="#">27 Review</a>
             <a href="#" class="car-review">Review & Win</a>
           </span>
