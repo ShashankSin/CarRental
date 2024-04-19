@@ -310,7 +310,8 @@
                         <td>$row[Model_year]</td>
                         <td>
                           <button name="edit_facility"><a href='feature_update.php?f_id=($row[f_id])'>  <i class='bx bxs-edit'></i></a></button>
-                          <button type="submit" name="delid"><a href='delete.php?f_id=($row[f_id])'> <i class='bx bxs-trash'></i></a></button>
+                          <button type="submit" name="delid"><a href='delete.php?f_id
+                          =($row[f_id])'> <i class='bx bxs-trash'></i></a></button>
 
                         </td>
                       </tr>
