@@ -22,10 +22,10 @@
 <header id="home">
         <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
         <ul class="nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#shop">Book</a></li>
-            <li><a href="">Gallery</a></li>
-            <li><a href="">Contact</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="#">Book</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="contact.php">Contact</a></li>
         </ul>
         <div class="sign">
             <a href="logout.php"><button>Log Out</button></a>
