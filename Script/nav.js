@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 });
-
+//slider
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -83,4 +83,15 @@ function showSlides(n) {
     slides[i].style.display = "none";
   }
   slides[slideIndex - 1].style.display = "block";
+}
+
+function validateEmail() {
+  var emailInput = document.getElementById("email");
+  var errorMessage = document.getElementById("error");
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailRegex.test(emailInput.value)) {
+    errorMessage.textContent = "";
+  } else {
+    errorMessage.textContent = "Invalid email address";
+  }
 }

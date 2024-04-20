@@ -17,7 +17,20 @@
 </head>
 
 <body>
-    <?php include('include/header.php')?>
+    <header id="home">
+        <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
+        <ul class="nav">
+        <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Booking</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+        <div class="sign">
+            <div class="sign-1"><i class="ri-user-fill"></i></div>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+
+    </header>
     <div class="container">
         <div class="slideshow-container">
 
@@ -48,7 +61,7 @@
                 <h3>Login Here</h3>
 
                 <label for="username">Username</label>
-                <input type="text" placeholder="Usename or Phone" id="username-1" name="username">
+                <input type="text" placeholder="Usename" id="username-1" name="username">
 
                 <label for="password">Password</label>
                 <input type="password" placeholder="Password" id="password-1" name="password">
@@ -56,16 +69,18 @@
                 <p for="Register" class="r-1">Donot have an account? <span class="register">Register Now</span>
                 </p>
             </form>
-            <form class="form form-1 hide" id="signup" method="post" action="signup.php">
+            <form class="form form-1 hide" id="signup" method="post" action="signup.php" name="signup">
                 <div class="shape"></div>
                 <div class="shape"></div>
                 <h3>SignUp </h3>
-                <label for="username">Username</label>
-                <input type="text" placeholder="Usename " id="username" name="username">
-                <label for="phone">Phone Number:</label>
-                <input type="text" placeholder="Phone number" id="phone" name="phone">
-                <label for="password">Password</label>
-                <input type="password" placeholder="Password" id="password" name="password">
+                <label for="username">Username:</label>
+                <input type="text" placeholder="Usename " id="username" name="username" required>
+                <label for="Email">Email:</label>
+                <input type="email" placeholder="Email" id="email" name="email" class="email" oninput="validateEmail()"
+                    required>
+                <p id="error"></p>
+                <label for="password">Password:</label>
+                <input type="password" placeholder="Password" id="password" name="password" required>
                 <input type="submit" class="button-1" name="submit">
                 <p for="Register" class="r-2">Already have an account? <span class="register">Login</span></p>
             </form>
@@ -88,7 +103,7 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <div class="price"> 30000.00 <span>37000.00</span> </div>
+                        <div class="price">Rs. 30000.00 <span>Rs. 37000.00</span> </div>
                         <div class="btn">Book now</div>
                     </div>
                 </div>
@@ -107,7 +122,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <div class="price"> 10000.00 <span>18000.00</span> </div>
+                        <div class="price">Rs. 10000.00 <span>Rs. 18000.00</span> </div>
                         <div class="btn">Book now</div>
                     </div>
                 </div>
@@ -126,7 +141,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <div class="price"> 24000.00 <span>28000.00</span> </div>
+                        <div class="price">Rs. 24000.00 <span>Rs. 28000.00</span> </div>
                         <div class="btn">Book now </div>
                     </div>
                 </div>
@@ -147,7 +162,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <div class="price"> 9000.00 <span>12000.00</span> </div>
+                        <div class="price">Rs. 9000.00 <span>Rs.12000.00</span> </div>
                         <div class="btn">Book now</div>
                     </div>
                 </div>
@@ -168,7 +183,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <div class="price"> 4000.00 <span>8000.00</span> </div>
+                        <div class="price">Rs. 4000.00 <span>Rs. 8000.00</span> </div>
                         <div class="btn">Book now</div>
                     </div>
                 </div>
@@ -189,7 +204,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <div class="price"> 18000.00 <span>20000.00</span> </div>
+                        <div class="price">Rs. 18000.00 <span>Rs. 20000.00</span> </div>
                         <div class="btn">Book now</div>
                     </div>
                 </div>
@@ -198,8 +213,9 @@
         </section>
     </div>
 
-   
-    <?php include('include/footer.php')?>
+    <footer>
+        <p>© 2024 All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
