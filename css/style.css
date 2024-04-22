@@ -455,7 +455,6 @@ input[type="submit"] {
 .shop .box-container .box .content {
   padding: 2rem;
 }
-
 .shop .box-container .box .content h3 {
   font-size: 2rem;
   color: #ffffff;
@@ -465,12 +464,26 @@ input[type="submit"] {
   color: var(--secondcolor);
 }
 
+.features {
+  padding: 1rem 0;
+}
 .shop .box-container .box .content p {
   font-size: 1.7rem;
   color: #ffffff;
-  padding: 1rem 0;
 }
-
+.shop .box-container .box .content ul {
+  margin: 0;
+  padding: 0.5rem 0;
+  list-style: none;
+}
+.shop .box-container .box .content li {
+  font-size: 1.5rem;
+  color: #ffffff;
+  padding-bottom: 0.5rem;
+}
+.shop .box-container .box .content li i {
+  padding-right: 0.5rem;
+}
 .shop .box-container .box .content .stars i {
   font-size: 1.7rem;
   color: var(--secondcolor);

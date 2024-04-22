@@ -4,7 +4,7 @@ require('include/db.php');
 require('include/essentials.php');
 // edit_feature
 if(isset($_POST['submit'])){
-    $f_id = isset($_GET['f_id']) ;
+    $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
     $Vehicle_title=$_POST['Vehicle_title'];
     $Vehicle_brand=$_POST['Vehicle_brand'];
     $Price=$_POST['Price'];
@@ -37,7 +37,6 @@ if(isset($_POST['submit'])){
     } else {
       echo "Failed to Update data.";
     } 
-    header('Location: /projects/carrental/admin/feature.php');
   }
 
 ?>
@@ -161,7 +160,6 @@ if(isset($_POST['submit'])){
                         <form id="features_edit_form" method="post"  enctype="multipart/form-data"> 
                         <?php
                         $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
-                        echo $f_id;
                         $ret=mysqli_query($con,"SELECT * from  `car_feature` where `f_id`=$f_id");
                         while ($row=mysqli_fetch_array($ret)) {
                         
