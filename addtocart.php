@@ -37,6 +37,15 @@
 
 </header>
 
+<?php 
+
+if(isset($_POST['addtocart'])){
+  $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
+  
+}
+
+?>
+
 
 
     <div class="container">
