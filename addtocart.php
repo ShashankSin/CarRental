@@ -1,7 +1,10 @@
 
 <?php
+  session_start();
     require('admin/include/db.php');
     require('admin/include/essentials.php');
+    $_SESSION['cid']=$_GET['f_id'];
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -82,7 +85,14 @@
             </div>
           </article>
           <div class="booking-box">
-            <input type="Submit" value="Book Now" class="btn" />
+          <form action="confirm_booking.php" method="post">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" min="<?php echo date('Y-m-d'); ?>" required><br>
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" min="<?php echo date('Y-m-d'); ?>" required><br>
+            <input type="hidden" id="car_id" name="car_id" value="<?php echo $_GET['f_id']; ?>">
+            <input type="submit" value="Book Now" class="btn">
+        </form>
           </div>
         </div>
       </div>
@@ -214,6 +224,22 @@
     </section>
     
     <?php include('include/footer.php')?>
+    <script>
+      // JavaScript to disable past dates in start date and end date input fields
+      document.addEventListener('DOMContentLoaded', function() {
+        var startDateInput = document.getElementById('start_date');
+        var endDateInput = document.getElementById('end_date');
+        
+        // Disable past dates in start date input field
+        var today = new Date().toISOString().split('T')[0];
+        startDateInput.setAttribute('min', today);
+
+        // Disable dates before start date in end date input field
+        startDateInput.addEventListener('change', function() {
+          endDateInput.setAttribute('min', this.value);
+        });
+      });
+    </script>
 </body>
 </html>
 
