@@ -84,14 +84,39 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].style.display = "block";
 }
-
 function validateEmail() {
   var emailInput = document.getElementById("email");
   var errorMessage = document.getElementById("error");
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailRegex.test(emailInput.value)) {
     errorMessage.textContent = "";
+    enableSubmitButton();
   } else {
     errorMessage.textContent = "Invalid email address";
+    disableSubmitButton();
   }
+}
+
+function validatePassword() {
+  var passwordInput = document.getElementById("password");
+  var passwordError = document.getElementById("password-error");
+  var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  if (passwordRegex.test(passwordInput.value)) {
+    passwordError.textContent = "";
+    enableSubmitButton();
+  } else {
+    passwordError.textContent =
+      "Password must be at least 8 characters long and contain at least one digit, one uppercase letter, and one lowercase letter";
+    disableSubmitButton();
+  }
+}
+
+function enableSubmitButton() {
+  var submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = false;
+}
+
+function disableSubmitButton() {
+  var submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = true;
 }
