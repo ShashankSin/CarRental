@@ -1,10 +1,6 @@
 <?php
     require('admin/include/db.php');
     require('admin/include/essentials.php');
-<<<<<<< HEAD
-    
-=======
->>>>>>> 22dc9a35e815adf818391935df95cec5aec7c5e0
 ?>
 
 
@@ -30,7 +26,7 @@
         <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
         <ul class="nav">
             <li><a href="#home">Home</a></li>
-            <li><a href="addtocart.php">Book</a></li>
+            <li><a href="#shop">Book</a></li>
             <li><a href="">Gallery</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
@@ -69,7 +65,6 @@
                 
                 <div class="box-container">
                 <?php 
-<<<<<<< HEAD
 $query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`");
 while($row=mysqli_fetch_assoc($query)){
     if ($row['Quantity'] > 0) { // Check if quantity is greater than 0
@@ -85,39 +80,6 @@ while($row=mysqli_fetch_assoc($query)){
                         <li><i class='bx bx-tachometer' ></i>$row[Top_speed]</li>
                         <li><i class='bx bxs-car-battery'></i> $row[Transmission]</li>
                     </ul>
-=======
-                    $query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`");
-                    while($row=mysqli_fetch_assoc($query)){
-                        echo <<< query
-                            <div class="box">
-                                <img src="images/car1.jpg" alt="">
-                                <div class="content">
-                                    <h3> <i class="fas fa-map-marker-alt"></i> $row[Vehicle_title]  </h3>
-                                    <div class="features">
-                                        <p>Feature</p>
-                                        <ul>
-                                            <li><i class='bx bx-gas-pump' ></i>$row[Fuel_type]</li>
-                                            <li><i class='bx bx-tachometer' ></i>$row[Top_speed]</li>
-                                            <li><i class='bx bxs-car-battery'></i> $row[Transmission]</li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <div class="price">Rs $row[Price]</div>
-                                    <a class="btn btn-1" href="addtocart.php?f_id=($row[f_id])" name="addtocart">Book now</a>
-                                </div>
-                            </div>
-                        query;
-                    }
-                ?>
-                    
->>>>>>> 22dc9a35e815adf818391935df95cec5aec7c5e0
                 </div>
                 <div class="stars">
                     <i class="fas fa-star"></i>

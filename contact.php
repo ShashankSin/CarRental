@@ -22,8 +22,8 @@
 <header id="home">
         <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
         <ul class="nav">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="addtocart.php">Book</a></li>
+            <li><a href="loggedin.php">Home</a></li>
+            <li><a href="loggedin.php">Book</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
