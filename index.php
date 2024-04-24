@@ -70,20 +70,20 @@
                 </p>
             </form>
             <form class="form form-1 hide" id="signup" method="post" action="signup.php" name="signup">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <h3>SignUp</h3>
-    <label for="username">Username:</label>
-    <input type="text" placeholder="Username" id="username" name="username" required>
-    <label for="email">Email:</label>
-    <input type="email" placeholder="Email" id="email" name="email" class="email" oninput="validateEmail()" required>
-    <p id="error" style="font-size:16px;"></p>
-    <label for="password">Password:</label>
-    <input type="password" placeholder="Password" id="password" name="password" oninput="validatePassword()" required>
-    <p id="password-error" style="font-size:16px;"></p>
-    <input type="submit" class="button-1" id="submitBtn" name="submit" disabled>
-    <p for="Register" class="r-2">Already have an account? <span class="register">Login</span></p>
-</form>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <h3>SignUp</h3>
+                <label for="username">Username:</label>
+                <input type="text" placeholder="Username" id="username" name="username" required>
+                <label for="email">Email:</label>
+                <input type="email" placeholder="Email" id="email" name="email" class="email" oninput="validateEmail()" required>
+                <p id="error" style="font-size:16px;"></p>
+                <label for="password">Password:</label>
+                <input type="password" placeholder="Password" id="password" name="password" oninput="validatePassword()" required>
+                <p id="password-error" style="font-size:16px;"></p>
+                <input type="submit" class="button-1" id="submitBtn" name="submit" disabled>
+                <p for="Register" class="r-2">Already have an account? <span class="register">Login</span></p>
+            </form>
 
         </div>
         <section class="shop" id="shop">
