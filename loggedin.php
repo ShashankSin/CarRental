@@ -65,31 +65,34 @@
                 
                 <div class="box-container">
                 <?php 
-$query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`");
-while($row=mysqli_fetch_assoc($query)){
-    if ($row['Quantity'] > 0) { // Check if quantity is greater than 0
-        echo <<< query
-        <div class="box">
-            <img src="images/car1.jpg" alt="">
-            <div class="content">
-                <h3> <i class="fas fa-map-marker-alt"></i> $row[Vehicle_title]  </h3>
-                <div class="features">
-                    <p>Feature</p>
-                    <ul>
-                        <li><i class='bx bx-gas-pump' ></i>$row[Fuel_type]</li>
-                        <li><i class='bx bx-tachometer' ></i>$row[Top_speed]</li>
-                        <li><i class='bx bxs-car-battery'></i> $row[Transmission]</li>
-                    </ul>
-                </div>
-                
-                <div class="price">Rs $row[Price] Per Day</div>
-                <a class="btn btn-1" href="addtocart.php?f_id=$row[f_id]" name="addtocart">Book now</a>
-            </div>
-        </div>
-    query;
-    }
-}
-?>
+                    $query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`");
+                        while($row=mysqli_fetch_assoc($query)){
+                            if ($row['Quantity'] > 0) { // Check if quantity is greater than 0
+                                echo <<< query
+                                <div class="box">
+                                    <div class="img-box">
+                                        <img src="images/{$row['Car_image1']}" alt="">
+
+                                    </div>
+                                    <div class="content">
+                                        <h3> $row[Vehicle_title]  </h3>
+                                        <div class="features">
+                                            <p>Feature</p>
+                                            <ul>
+                                                <li><i class='bx bx-gas-pump' ></i>$row[Fuel_type]</li>
+                                                <li><i class='bx bx-tachometer' ></i>$row[Top_speed]</li>
+                                                <li><i class='bx bxs-car-battery'></i> $row[Transmission]</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="price">Rs $row[Price] Per Day</div>
+                                        <a class="btn btn-1" href="addtocart.php?f_id=$row[f_id]" name="addtocart">Book now</a>
+                                    </div>
+                                </div>
+                            query;
+                        }
+                    }
+                ?>
 
             </section>
 

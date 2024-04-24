@@ -1,3 +1,10 @@
+
+<?php
+    require('admin/include/db.php');
+    require('admin/include/essentials.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,125 +97,35 @@
             <h1>Booking Open</h1>
 
             <div class="box-container">
-                <div class="box">
-                    <div class="img-box"><img src="images/car1.jpg" alt=""></div>
-                    <div class="content">
-                        <h3> <i class="fas fa-map-marker-alt"></i> 2021 Rolls-Royce LE </h3>
-                        <p>Rolls-Royce is available in 4 different colours - Graphite Grey, Polar White, Nautic
-                            Blue and
-                            Obsidian Black.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="price">Rs. 30000.00 <span>Rs. 37000.00</span> </div>
-                        <div class="btn">Book now</div>
-                    </div>
-                </div>
+            <?php 
+                    $query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`");
+                        while($row=mysqli_fetch_assoc($query)){
+                            if ($row['Quantity'] > 0) { // Check if quantity is greater than 0
+                                echo <<< query
+                                <div class="box">
+                                    <div class="img-box">
+                                        <img src="images/{$row['Car_image1']}" alt="">
 
-                <div class="box">
-                    <div class="img-box"><img src="images/car2.jpg" alt=""></div>
-                    <div class="content">
-                        <h3> <i class="fas fa-map-marker-alt"></i> Mercedes-Benz GLA </h3>
-                        <p>Mercedes-Benz GLA car is available in 5 different colors. Neon , Ash Gray ,Space
-                            White,
-                            Astral Black and Navy Blue</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="price">Rs. 10000.00 <span>Rs. 18000.00</span> </div>
-                        <div class="btn">Book now</div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img-box"><img src="images/car3.jpg" alt=""></div>
-                    <div class="content">
-                        <h3> <i class="fas fa-map-marker-alt"></i> Kia Niro Hybrid </h3>
-                        <p>The tiny Niro brings bold styling and shows off a bit of a growth spurt for its
-                            second
-                            generation.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="price">Rs. 24000.00 <span>Rs. 28000.00</span> </div>
-                        <div class="btn">Book now </div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img-box"><img src="images/car4.jpg" alt=""></div>
-                    <div class="content">
-                        <h3> <i class="fas fa-map-marker-alt"></i> 2023 BMW Z4 </h3>
-                        <p>The Z4 is one of our favorites because it is a serious sports car, and we suspect
-                            that is not
-                            least the case because of Toyota's input in this joint project, which led both to
-                            the Z4 and
-                            the Supra.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="price">Rs. 9000.00 <span>Rs.12000.00</span> </div>
-                        <div class="btn">Book now</div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img-box"><img src="images/car5.jpg" alt=""></div>
-                    <div class="content">
-                        <h3> <i class="fas fa-map-marker-alt"></i> 2022 Toyota Crown </h3>
-                        <p>The 2023 Crown debuts with three trim levels. Powering the XLE and Limited is a
-                            2.5-liter
-                            four-cylinder engine paired with three electric motors powered by a new
-                            nickel-metal-hydride
-                            battery pack.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="price">Rs. 4000.00 <span>Rs. 8000.00</span> </div>
-                        <div class="btn">Book now</div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img-box"><img src="images/car6.jpeg" alt=""></div>
-                    <div class="content">
-                        <h3> <i class="fas fa-map-marker-alt"></i> Faraday Future FF 91 </h3>
-                        <p>Faraday Future's press release also specifies that the rating only applies to the FF
-                            91
-                            Futurist, which will represent the top of the model line and could crest $200,000,
-                            according
-                            to the company. </p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="price">Rs. 18000.00 <span>Rs. 20000.00</span> </div>
-                        <div class="btn">Book now</div>
-                    </div>
-                </div>
+                                    </div>
+                                    <div class="content">
+                                        <h3>  $row[Vehicle_title]  </h3>
+                                        <div class="features">
+                                            <p>Feature</p>
+                                            <ul>
+                                                <li><i class='bx bx-gas-pump' ></i>$row[Fuel_type]</li>
+                                                <li><i class='bx bx-tachometer' ></i>$row[Top_speed]</li>
+                                                <li><i class='bx bxs-car-battery'></i> $row[Transmission]</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="price">Rs $row[Price] Per Day</div>
+                                        <a class="btn btn-1" >Book now</a>
+                                    </div>
+                                </div>
+                            query;
+                        }
+                    }
+            ?>
             </div>
 
         </section>
