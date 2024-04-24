@@ -81,14 +81,8 @@ while($row=mysqli_fetch_assoc($query)){
                         <li><i class='bx bxs-car-battery'></i> $row[Transmission]</li>
                     </ul>
                 </div>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">Rs $row[Price]</div>
+                
+                <div class="price">Rs $row[Price] Per Day</div>
                 <a class="btn btn-1" href="addtocart.php?f_id=$row[f_id]" name="addtocart">Book now</a>
             </div>
         </div>

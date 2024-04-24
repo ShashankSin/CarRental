@@ -38,11 +38,10 @@
 </header>
 
 <?php 
-
-if(isset($_POST['addtocart'])){
-  $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
+$f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
+$query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`=$f_id");
+while($row=mysqli_fetch_assoc($query)){
   
-}
 
 ?>
 
@@ -54,41 +53,37 @@ if(isset($_POST['addtocart'])){
           <img src="images/car1.jpg" alt="car" />
         </div>
         <div class="car-description">
-          <h1>Rolls Royce</h1>
-          <span>
-            <a href="#">27 Review</a>
-            <a href="#" class="car-review">Review & Win</a>
-          </span>
-          <span><h2>Rs. 10,000 - Rs. 20,000</h2></span>
+          <h1><?php echo $row['Vehicle_title']?></h1>
+          <span><h2>Rs. <?php echo $row['Price']?> Per Day</h2></span>
           <article>
             <h3>Key Features</h3>
             <div class="car-feature">
               <div class="FeatureOne">
                 <div class="features">
                   <span><i class="fa-solid fa-engine"></i> Engine</span>
-                  <span>6749 cc</span>
+                  <span><?php echo $row['Engine']?> cc</span>
                 </div>
                 <div class="features">
                   <span><i class="fa-solid fa-engine"></i> Torque</span>
-                  <span>900 Nm</span>
+                  <span><?php echo $row['Torque']?> Nm</span>
                 </div>
                 <div class="features">
                   <span><i class="fa-solid fa-engine"></i> Top Speed</span>
-                  <span>250 kmph</span>
+                  <span><?php echo $row['Top_speed']?> kmph</span>
                 </div>
               </div>
               <div class="FeatureTwo">
                 <div class="features">
                   <span><i class="fa-solid fa-engine"></i> Power</span>
-                  <span>563 bhp</span>
+                  <span><?php echo $row['Power']?> bhp</span>
                 </div>
                 <div class="features">
                   <span><i class="fa-solid fa-engine"></i> Transmission</span>
-                  <span>Automatic</span>
+                  <span><?php echo $row['Transmission']?></span>
                 </div>
                 <div class="features">
                   <span><i class="fa-solid fa-engine"></i> Drive Type</span>
-                  <span>2 WD</span>
+                  <span><?php echo $row['Drive_type']?> WD</span>
                 </div>
               </div>
             </div>
@@ -106,6 +101,10 @@ if(isset($_POST['addtocart'])){
         </div>
       </div>
     </div>
+
+    <?php 
+  }   
+    ?>
     <section class="car-track-records">
       <article>
         <div class="track-records">
