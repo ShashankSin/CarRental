@@ -1,10 +1,12 @@
-
 <?php
-  session_start();
-    require('admin/include/db.php');
-    require('admin/include/essentials.php');
-    $_SESSION['cid']=$_GET['f_id'];
-    
+session_start();
+require('admin/include/db.php');
+require('admin/include/essentials.php');
+$_SESSION['cid'] = $_GET['f_id'];
+
+?>
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +44,6 @@ $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
 $query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`=$f_id");
 while($row=mysqli_fetch_assoc($query)){
   
-
 ?>
 
 
@@ -105,6 +106,36 @@ while($row=mysqli_fetch_assoc($query)){
     <?php 
   }   
     ?>
+
+<!-- Total Price Calculation -->
+<?php
+// Check if form is submitted
+if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
+    $f_id = isset($_POST['car_id']) ? $_POST['car_id'] : null;
+
+    // Fetch car details from the database
+    $query = mysqli_query($con, "SELECT * FROM `car_feature` WHERE `f_id`='$f_id'");
+    $row = mysqli_fetch_assoc($query);
+
+    // Retrieve daily rental price from the database
+    $dailyPrice = $row['Price'];
+
+    // Calculate total price based on start date and end date
+    $startDate = strtotime($_POST['start_date']);
+    $endDate = strtotime($_POST['end_date']);
+    $numberOfDays = ceil(abs($endDate - $startDate) / 86400); // 86400 seconds in a day
+
+    // Multiply daily rental price by number of days
+    $totalPrice = $dailyPrice * $numberOfDays;
+} else {
+    // If form is not submitted, set default total price to 0
+    $totalPrice = 0;
+}
+?>
+
+<!-- Display total price -->
+<h2>Total Price: Rs. <?php echo number_format($totalPrice, 2); ?></h2>
+
     <section class="car-track-records">
       <article>
         <div class="track-records">
@@ -230,24 +261,23 @@ while($row=mysqli_fetch_assoc($query)){
         </div>
       </aside>
     </section>
-    
-    <?php include('include/footer.php')?>
-    <script>
-      // JavaScript to disable past dates in start date and end date input fields
-      document.addEventListener('DOMContentLoaded', function() {
-        var startDateInput = document.getElementById('start_date');
-        var endDateInput = document.getElementById('end_date');
-        
-        // Disable past dates in start date input field
-        var today = new Date().toISOString().split('T')[0];
-        startDateInput.setAttribute('min', today);
 
-        // Disable dates before start date in end date input field
-        startDateInput.addEventListener('change', function() {
-          endDateInput.setAttribute('min', this.value);
-        });
-      });
-    </script>
+<?php include('include/footer.php')?>
+<script>
+  // JavaScript to disable past dates in start date and end date input fields
+  document.addEventListener('DOMContentLoaded', function() {
+    var startDateInput = document.getElementById('start_date');
+    var endDateInput = document.getElementById('end_date');
+    
+    // Disable past dates in start date input field
+    var today = new Date().toISOString().split('T')[0];
+    startDateInput.setAttribute('min', today);
+
+    // Disable dates before start date in end date input field
+    startDateInput.addEventListener('change', function() {
+      endDateInput.setAttribute('min', this.value);
+    });
+  });
+</script>
 </body>
 </html>
-
