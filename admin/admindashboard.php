@@ -89,26 +89,7 @@
         </div>
       </div>
       <div class="content--table">
-        <table border="1">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Car name</th>
-              <th>Car Brand</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Ferari</td>
-              <td>Swastik</td>
-              <td><button>Edit</button></td>
-              <td><button>Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
+        
       </div>
     </header>
     <!-- header ends -->
