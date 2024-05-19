@@ -6,8 +6,6 @@ $_SESSION['cid'] = $_GET['f_id'];
 
 ?>
 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

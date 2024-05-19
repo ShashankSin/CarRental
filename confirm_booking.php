@@ -100,12 +100,12 @@ $totalPrice = calculateTotalPrice($dailyPrice, $_POST['start_date'], $_POST['end
     CURLOPT_POSTFIELDS =>'{
     "return_url": "http://localhost/projects/carrental/index.php",
     "website_url": "http://localhost/",
-    "amount": "'.$totalPrice.'",
+    "amount": "10",
     "purchase_order_id": "Order01",
         "purchase_order_name": "test",
 
     "customer_info": {
-        "name": "Test Bahadur",
+        "name": "Ram",
         "email": "test@khalti.com",
         "phone": "9800000001"
     }
@@ -118,7 +118,7 @@ $totalPrice = calculateTotalPrice($dailyPrice, $_POST['start_date'], $_POST['end
     ),
     ));
 
-    $response = json_decode(curl_exec($curl),true);
+    $response = json_decode(curl_exec($curl),true); 
     $payment_url=$response['payment_url'];
     // redirect back to payment_url
     header('location:' .$payment_url);
