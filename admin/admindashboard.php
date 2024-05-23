@@ -89,7 +89,173 @@
         </div>
       </div>
       <div class="content--table">
-        
+      <div class="section-setting">
+        <div class="section-setting-title">
+            <h3>Admin Dashboard</h3>
+        </div>
+        <div class="section-setting-card">
+            <div class="card-title">
+                <h5>Car Bookings</h5>
+                <button onclick="openPopup()"><i class="bi bi-pencil-square"></i> <span>Add</span></button>
+
+                <!-- add feature -->
+                <div class="popup" id="popup" style="width: 800px;">
+                  <div class="setting-title">
+                    <h2>Add Features</h2>
+                  </div>
+                  <div class="setting-form">
+                    <form id="features_s_form" method="post"  enctype="multipart/form-data" action="?"> 
+                      <div class="setting-contacts-form">
+                        <div class="setting-form-left-side">
+                          <div class="setting-form-site-title">
+                            <label>Vehicle Title</label>
+                            <input type="text" name="Vehicle_title" id="Vehicle_title" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Vehicle Brand</label>
+                            <input type="text" name="Vehicle_brand" id="Vehicle_brand" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Per Day Price</label>
+                            <input type="number" name="Price" id="Price" required>
+                          </div>
+                        </div>
+                        <div class="setting-form-right-side">
+                          <div class="setting-form-site-title">
+                            <label>Fuel Type</label>
+                            <input type="text" name="Fuel_type" id="Fuel_type" required>
+                          </div>  
+                          <div class="setting-form-site-title">
+                            <label>Model Year</label>
+                            <input type="number" name="Model_year" id="Model_year" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Seating Capacity</label>
+                            <input type="number " name="Seating_capacity" id="Seating_capacity" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="setting-contacts-form-feature">
+                        <div class="form-feature">
+                          <div class="setting-form-site-title">
+                            <label>Engine Unit(cc)</label>
+                            <input type="number " name="Engine" id="Engine" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Torque Unit(Nm)</label>
+                            <input type="number " name="Torque" id="Torque" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Top Speed Unit(kmph)</label>
+                            <input type="number " name="Top_speed" id="Top_speed" required>
+                          </div>
+                        </div>
+                        <div class="form-feature">
+                          <div class="setting-form-site-title">
+                            <label>Power Unit(bhp)</label>
+                            <input type="number " name="Power" id="Power" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Transmission</label>
+                            <input type="text" name="Transmission" id="Transmission" required>
+                          </div>
+                          <div class="setting-form-site-title">
+                            <label>Drive Type Unit(WD)</label>
+                            <input type="number " name="Drive_type" id="Drive_type" required>
+                          </div>
+                        </div>
+                        <div class="form-feature">
+                          <div class="setting-form-site-title">
+                            <label>Quantity</label>
+                            <input type="number " name="Quantity" id="Quantity" required>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                      <div class="setting-contacts-form-feature">
+                        <div class="form-feature">
+                          <div class="feature-image">
+                            <label>Image 1 <span>*</span></label>
+                            <input type="file" name="Car_image1" id="Vehicle_img_1" required>
+                          </div>
+                          <div class="feature-image">
+                            <label>Image 2 <span>*</span></label>
+                            <input type="file" name="Car_image2" id="Car_image2" required>
+                          </div>
+                          
+                        </div>
+                        <div class="form-feature">
+                          <div class="feature-image">
+                            <label>Image 3 <span>*</span></label>
+                            <input type="file" name="Car_image3" id="Car_image3" required>
+                          </div>
+                          <div class="feature-image">
+                            <label>Image 4 <span>*</span></label>
+                            <input type="file" name="Car_image4" id="Car_image4" required>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div class="setting-button">
+                        <button type="Reset" onclick="closePopup()" onclick="contacts_inp(contacts_data)">Cancel</button>
+                        <button type="submit" name="add_facility">Submit</button>
+                      </div>
+                    </form>
+                    
+                  </div>
+                 
+                </div>
+
+
+            </div>
+            
+            <div class="card-content">
+              <table cellpadding="0" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Vehicle Title</th>
+                    <th>Brand</th>
+                    <th>Price Per day</th>
+                    <th>Fule Type</th>
+                    <th>Model Year</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                    $q="SELECT * FROM `car_feature` ORDER BY `f_id`";
+                    $data= mysqli_query($con,$q);
+                    $i=1;
+                    while($row=mysqli_fetch_assoc($data)){
+                      echo <<< query
+                      <tr>
+                        <td>$i</td>
+                        <td>$row[Vehicle_title]</td>
+                        <td>$row[Vehicle_brand]</td>
+                        <td>$row[Price]</td>
+                        <td>$row[Fuel_type]</td>
+                        <td>$row[Model_year]</td>
+                        <td>
+                          <button name="edit_facility"><a href='feature_update.php?f_id=($row[f_id])'>  <i class='bx bxs-edit'></i></a></button>
+                          <button type="submit" name="delid"><a href='delete.php?f_id
+                          =($row[f_id])'> <i class='bx bxs-trash'></i></a></button>
+
+                        </td>
+                      </tr>
+
+                      query;
+                      $i++;
+
+                    }
+                  
+                  ?>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
       </div>
     </header>
     <!-- header ends -->

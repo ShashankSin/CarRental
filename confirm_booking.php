@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endDate = $_POST["end_date"];
     $cid=$_SESSION['cid'];
     echo gettype($cid)."\n";
-    echo $id;
 
 
     // Connect to the database (replace these with your actual database credentials)
@@ -28,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Prepare and bind the SQL statement to insert booking data
-    $stmt_insert = $conn->prepare("INSERT INTO booking (id, start_date, end_date) VALUES (?, ?, ?)");
-    $stmt_insert->bind_param("iss", $id, $startDate, $endDate);
+    $stmt_insert = $conn->prepare("INSERT INTO booking (c_id,car_id,start_date, end_date) VALUES (?, ?, ?, ?)");
+    $stmt_insert->bind_param("iiss", $id,$cid, $startDate, $endDate);
 
     // Prepare and bind the SQL statement to update car_feature quantity
-    $stmt_update = $conn->prepare("UPDATE car_feature SET Quantity = QUantity-1 WHERE f_id = ?");
+    $stmt_update = $conn->prepare("UPDATE car_feature SET Quantity = Quantity-1 WHERE f_id = ?");
 
     // Execute insert statement
     if ($stmt_insert->execute() === TRUE) {
@@ -86,7 +85,7 @@ $dailyPrice = $row['Price'];
 
 // Calculate total price based on start date and end date
 $totalPrice = calculateTotalPrice($dailyPrice, $_POST['start_date'], $_POST['end_date']);
-
+echo "<br>".$totalPrice;
     $curl = curl_init();
     curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://a.khalti.com/api/v2/epayment/initiate/',
@@ -100,7 +99,7 @@ $totalPrice = calculateTotalPrice($dailyPrice, $_POST['start_date'], $_POST['end
     CURLOPT_POSTFIELDS =>'{
     "return_url": "http://localhost/projects/carrental/index.php",
     "website_url": "http://localhost/",
-    "amount": "10",
+    "amount": "19999",
     "purchase_order_id": "Order01",
         "purchase_order_name": "test",
 
@@ -118,9 +117,10 @@ $totalPrice = calculateTotalPrice($dailyPrice, $_POST['start_date'], $_POST['end
     ),
     ));
 
-    $response = json_decode(curl_exec($curl),true); 
-    $payment_url=$response['payment_url'];
-    // redirect back to payment_url
+    $response = json_decode(curl_exec($curl), true);
+    var_dump($response); // Add this line
+    $payment_url = $response['payment_url'];
+    
     header('location:' .$payment_url);
 
     // curl_close($curl);
@@ -129,7 +129,7 @@ $totalPrice = calculateTotalPrice($dailyPrice, $_POST['start_date'], $_POST['end
             die("Error:".$e->getMessage());
     }
     // Insert data into the new table
-    $insertQuery = "INSERT INTO calculated_prices (car_id, username, total_price) VALUES ('$f_id', '$id', '$totalPrice')";
+    $insertQuery = "INSERT INTO calculated_prices (c_id,car_id, total_price) VALUES ('$id', '$f_id', '$totalPrice')";
 
     // Execute the query and check for errors
     if (mysqli_query($con, $insertQuery)) {
