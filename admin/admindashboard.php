@@ -1,5 +1,6 @@
 <?php 
 
+require('include/db.php');
   require('include/essentials.php');
   adminLogin();
   session_regenerate_id(true);
