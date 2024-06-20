@@ -100,9 +100,8 @@ if(isset($_POST['upd_contacts'])){
           <span style="font-weight: 800">Dashboard </span>
         </div>
         <div class="profile-content">
-          <img src="images/Profilepic.jpg" alt="profile-pic" />
-          <span>Shashank Singh</span>
-          <button><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+          <img src="images/admin.jpg" alt="profile-pic" />
+          <span>Admin</span>
         </div>
         <div class="nav-options">
           <span><i class="bi bi-grid-1x2"></i><a href="admindashboard.php">Dashboard</a></span>
@@ -110,7 +109,7 @@ if(isset($_POST['upd_contacts'])){
             ><i class="bi bi-card-checklist"></i><a href="feature.php">Features</a></span
           >
           <span
-            ><i class="bi bi-calendar4-week"></i><a href="#">Schedule</a></span
+            ><i class="bi bi-person"></i><a href="Users.php">Users</a></span
           >
           <span><i class="bi bi-sliders"></i><a href="settings.php">Setting</a></span>
         </div>

@@ -1,6 +1,7 @@
 <?php
     require('admin/include/db.php');
     require('admin/include/essentials.php');
+    
 ?>
 
 
@@ -18,16 +19,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <script src="Script/nav.js"></script>
-
 </head>
 
 <body>
     <header id="home">
         <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
         <ul class="nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#shop">Book</a></li>
-            <li><a href="">Gallery</a></li>
+            <li><a href="loggedin.php">Home</a></li>
+            <li><a href="loggedin.php#shop">Book</a></li>
+            <li><a href="gallery.php">Gallery</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
         <div class="sign">
@@ -65,7 +65,7 @@
                 
                 <div class="box-container">
                 <?php 
-                    $query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`");
+                    $query=mysqli_query($con,"SELECT * FROM `car_feature`");
                         while($row=mysqli_fetch_assoc($query)){
                             if ($row['Quantity'] > 0) { // Check if quantity is greater than 0
                                 echo <<< query

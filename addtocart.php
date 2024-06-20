@@ -2,10 +2,8 @@
 session_start();
 require('admin/include/db.php');
 require('admin/include/essentials.php');
-$_SESSION['cid'] = $_GET['f_id'];
-
+$_SESSION['fid']=$_GET['f_id'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,158 +21,94 @@ $_SESSION['cid'] = $_GET['f_id'];
 </head>
 <body>
 <header id="home">
-        <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
-        <ul class="nav">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="#">Book</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="contact.php">Contact</a></li>
-        </ul>
-        <div class="sign">
-            <a href="logout.php"><button>Log Out</button></a>
-            <div class="bx bx-menu" id="menu-icon"></div>
-        </div>
-
+    <a href="" class=logo><i class="ri-roadster-fill"></i>Car Rental</a>
+    <ul class="nav">
+        <li><a href="loggedin.php">Home</a></li>
+        <li><a href="#shop">Book</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="contact.php">Contact</a></li>
+    </ul>
+    <div class="sign">
+        <a href="logout.php"><button>Log Out</button></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </div>
 </header>
 
 <?php 
 $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
-$query=mysqli_query($con,"SELECT * FROM `car_feature` WHERE `f_id`=$f_id");
-while($row=mysqli_fetch_assoc($query)){
-  
+$query = mysqli_query($con, "SELECT * FROM `car_feature` WHERE `f_id`=$f_id");
+while ($row = mysqli_fetch_assoc($query)) {
+  $_SESSION['car']= $row['Vehicle_title'];
 ?>
 
-
-
-    <div class="container">
-      <div class="car-details">
+<div class="container">
+    <div class="car-details">
         <div class="car-image">
-          <img src="images/car1.jpg" alt="car" />
+            <img src="images/<?php echo $row['Car_image1'] ?>" alt="car" />
         </div>
         <div class="car-description">
-          <h1><?php echo $row['Vehicle_title']?></h1>
-          <span><h2>Rs. <?php echo $row['Price']?> Per Day</h2></span>
-          <article>
-            <h3>Key Features</h3>
-            <div class="car-feature">
-              <div class="FeatureOne">
-                <div class="features">
-                  <span><i class="fa-solid fa-engine"></i> Engine</span>
-                  <span><?php echo $row['Engine']?> cc</span>
+            <h1><?php echo $row['Vehicle_title'] ?></h1>
+            <span><h2>Rs. <?php echo $row['Price'] ?> Per Day</h2></span>
+            <article>
+                <h3>Key Features</h3>
+                <div class="car-feature">
+                    <div class="FeatureOne">
+                        <div class="features">
+                            <span><i class="fa-solid fa-engine"></i> Engine</span>
+                            <span><?php echo $row['Engine'] ?> cc</span>
+                        </div>
+                        <div class="features">
+                            <span><i class="fa-solid fa-engine"></i> Torque</span>
+                            <span><?php echo $row['Torque'] ?> Nm</span>
+                        </div>
+                        <div class="features">
+                            <span><i class="fa-solid fa-engine"></i> Top Speed</span>
+                            <span><?php echo $row['Top_speed'] ?> kmph</span>
+                        </div>
+                    </div>
+                    <div class="FeatureTwo">
+                        <div class="features">
+                            <span><i class="fa-solid fa-engine"></i> Power</span>
+                            <span><?php echo $row['Power'] ?> bhp</span>
+                        </div>
+                        <div class="features">
+                            <span><i class="fa-solid fa-engine"></i> Transmission</span>
+                            <span><?php echo $row['Transmission'] ?></span>
+                        </div>
+                        <div class="features">
+                            <span><i class="fa-solid fa-engine"></i> Drive Type</span>
+                            <span><?php echo $row['Drive_type'] ?> WD</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="features">
-                  <span><i class="fa-solid fa-engine"></i> Torque</span>
-                  <span><?php echo $row['Torque']?> Nm</span>
-                </div>
-                <div class="features">
-                  <span><i class="fa-solid fa-engine"></i> Top Speed</span>
-                  <span><?php echo $row['Top_speed']?> kmph</span>
-                </div>
-              </div>
-              <div class="FeatureTwo">
-                <div class="features">
-                  <span><i class="fa-solid fa-engine"></i> Power</span>
-                  <span><?php echo $row['Power']?> bhp</span>
-                </div>
-                <div class="features">
-                  <span><i class="fa-solid fa-engine"></i> Transmission</span>
-                  <span><?php echo $row['Transmission']?></span>
-                </div>
-                <div class="features">
-                  <span><i class="fa-solid fa-engine"></i> Drive Type</span>
-                  <span><?php echo $row['Drive_type']?> WD</span>
-                </div>
-              </div>
+            </article>
+            <div class="booking-box">
+                <form action="initiate_payment.php" method="post">
+                    <div class="date">
+                      <div class="start-date">
+                        <label for="start_date">Start Date:</label>
+                        <input type="date" id="start_date" name="start_date" min="<?php echo date('Y-m-d'); ?>" required><br>
+                      </div>
+                      <div class="start-date">
+                        <label for="end_date">End Date:</label>
+                        <input type="date" id="end_date" name="end_date" min="<?php echo date('Y-m-d'); ?>" required><br>
+                      </div>
+                    </div>
+                    <input type="hidden" id="car_id" name="car_id" value="<?php echo $_GET['f_id']; ?>">
+                    <input type="submit" value="Book Now" class="btn">
+                </form>
             </div>
-          </article>
-          <div class="booking-box">
-          <form action="confirm_booking.php" method="post">
-            <label for="start_date">Start Date:</label>
-            <input type="date" id="start_date" name="start_date" min="<?php echo date('Y-m-d'); ?>" required><br>
-            <label for="end_date">End Date:</label>
-            <input type="date" id="end_date" name="end_date" min="<?php echo date('Y-m-d'); ?>" required><br>
-            <input type="hidden" id="car_id" name="car_id" value="<?php echo $_GET['f_id']; ?>">
-            <input type="submit" value="Book Now" class="btn">
-        </form>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <?php 
-  }   
-    ?>
-
-<!-- Total Price Calculation -->
-<?php
-// Check if form is submitted
-if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
-    $f_id = isset($_POST['car_id']) ? $_POST['car_id'] : null;
-
-    // Fetch car details from the database
-    $query = mysqli_query($con, "SELECT * FROM `car_feature` WHERE `f_id`='$f_id'");
-    $row = mysqli_fetch_assoc($query);
-
-    // Retrieve daily rental price from the database
-    $dailyPrice = $row['Price'];
-
-    // Calculate total price based on start date and end date
-    $startDate = strtotime($_POST['start_date']);
-    $endDate = strtotime($_POST['end_date']);
-    $numberOfDays = ceil(abs($endDate - $startDate) / 86400); // 86400 seconds in a day
-
-    // Multiply daily rental price by number of days
-    $totalPrice = $dailyPrice * $numberOfDays;
-} else {
-    // If form is not submitted, set default total price to 0
-    $totalPrice = 0;
-}
+<?php 
+} 
 ?>
 
-<!-- Display total price -->
-<h2>Total Price: Rs. <?php echo number_format($totalPrice, 2); ?></h2>
 
-    <section class="car-track-records">
+<section class="car-track-records">
       <article>
-        <div class="track-records">
-          <h1>Rolls-Roycs Phantom Car Latest Update</h1>
-          <p>
-            <b> 23 February 2018:</b> Rolls-Royce has revealed the prices of the
-            eighth-generation of the Phantom in India. The CBU unit is priced at
-            Rs 9.5 crores for the standard wheelbase and extends to Rs 11.5
-            crores for the extended wheelbase version with personalisation
-            options. 2018 Rolls-Royce Phantom is the most expensive car on sale
-            in India currently. Underneath the car is an all-aluminium
-            spaceframe chassis which is loosely related to that of its
-            predecessor. Rolls-Royce says that it is lighter in weight and 30
-            per cent stiffer than before, traits that make the new Phantom more
-            efficient. The British luxury carmaker has also confirmed that the
-            platform will underpin its first-ever SUV, the Cullinan, and the
-            next generation models of the Wraith, Dawn and the Ghost.
-            Rolls-Royce says that none of its cars, in the future, will have a
-            monocoque construction either. It is powered by a twin-turbo
-            6.75-litre V12 engine that produces 571PS of power and 900Nm of
-            torque. The engine is turned to deliver all of its torque at revs as
-            low as 1,700. The eight-speed auto does its job well and although
-            the Phantom VIII weighs over 2.6-tonnes, it can hit 100kmph in 5.4
-            seconds and clock a top speed of 250kmph. The list of creature
-            comforts is endless. Touted as the car with the world's quietest
-            cabin, its fitted with a 130kg sound insulation system and double
-            laminated glass windows to cut all the unnecessary and harsh road
-            noises. It includes alertness assistant, a 4-camera system with
-            panoramic view, all-round visibility with helicopter view, night
-            vision and vision assist and active cruise control. The list
-            continues with collision and pedestrian warning, cross-traffic
-            warning, lane departure and lane change warning, 7x3 high-resolution
-            heads-up display and a WiFi hotspot.
-            <b>Witness the magnificence in pictures:</b>
-            <a href="#"
-              >Eighth-Gen Rolls-Royce Phantom: The Pinnacle Of Luxury In
-              Pictures</a
-            >
-          </p>
-          <span>Read more...</span>
-        </div>
         <div class="track-records car-margin">
           <h1>Review About Car</h1>
           <form action="#" method="post">
@@ -191,91 +125,43 @@ if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
           </div>
 
           <div class="popular-car-tier">
+          <?php 
+            $f_id = isset($_GET['f_id']) ? $_GET['f_id'] : null;
+            $query=mysqli_query($con,"SELECT * FROM `car_feature`");
+            while($row=mysqli_fetch_assoc($query)){
+              
+            ?>
             <div class="popular-car">
               <div class="popular-car-image">
-                <img src="images/car1.jpg" alt="car1" />
+                <img src="images/<?php echo $row['Car_image2'] ?>" alt="car1" />
               </div>
               <div class="popular-car-details">
-                <h3>Rolls Royce</h3>
-                <span>Rs. 10,000 - Rs. 20,000</span>
+                <h3><?php echo $row['Vehicle_title']?></h3>
+                <span
+                  >Rs.
+                  <?php echo $row['Price'] ?></span
+                >
               </div>
             </div>
-            <div class="popular-car">
-              <div class="popular-car-image">
-                <img src="images/car1.jpg" alt="car1" />
-              </div>
-              <div class="popular-car-details">
-                <h3>Rolls Royce</h3>
-                <span>Rs. 10,000 - Rs. 20,000</span>
-              </div>
-            </div>
-            <div class="popular-car">
-              <div class="popular-car-image">
-                <img src="images/car1.jpg" alt="car1" />
-              </div>
-              <div class="popular-car-details">
-                <h3>Rolls Royce</h3>
-                <span>Rs. 10,000 - Rs. 20,000</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="car-updates car-margin">
-          <div class="Trending">
-            <h1>Trending Cars</h1>
-            <span>Popular</span>
-            <span style="padding: 1rem">Hot</span>
-          </div>
-
-          <div class="popular-car-tier">
-            <div class="popular-car">
-              <div class="popular-car-image">
-                <img src="images/car2.jpg" alt="car1" />
-              </div>
-              <div class="popular-car-details">
-                <h3>Rolls Royce</h3>
-                <span>Rs. 10,000 - Rs. 20,000</span>
-              </div>
-            </div>
-            <div class="popular-car">
-              <div class="popular-car-image">
-                <img src="images/car3.jpg" alt="car1" />
-              </div>
-              <div class="popular-car-details">
-                <h3>Rolls Royce</h3>
-                <span>Rs. 10,000 - Rs. 20,000</span>
-              </div>
-            </div>
-            <div class="popular-car">
-              <div class="popular-car-image">
-                <img src="images/car4.jpg" alt="car1" />
-              </div>
-              <div class="popular-car-details">
-                <h3>Rolls Royce</h3>
-                <span>Rs. 10,000 - Rs. 20,000</span>
-              </div>
-            </div>
+            <?php
+        }
+        ?>
           </div>
         </div>
       </aside>
     </section>
-
-<?php include('include/footer.php')?>
 <script>
-  // JavaScript to disable past dates in start date and end date input fields
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var startDateInput = document.getElementById('start_date');
     var endDateInput = document.getElementById('end_date');
     
-    // Disable past dates in start date input field
     var today = new Date().toISOString().split('T')[0];
     startDateInput.setAttribute('min', today);
 
-    // Disable dates before start date in end date input field
     startDateInput.addEventListener('change', function() {
-      endDateInput.setAttribute('min', this.value);
+        endDateInput.setAttribute('min', this.value);
     });
-  });
+});
 </script>
 </body>
 </html>

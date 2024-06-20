@@ -595,3 +595,43 @@ header
 .card-content table {
   border: 2px solid #000;
 }
+.admin-panel {
+  margin: 20px;
+}
+.admin-panel .admin-panel-title h2 {
+  font-size: 40px;
+  font-weight: 80 0;
+}
+.admin-panel-card .admin-panel-sub-title h6 {
+  font-size: 20px;
+  color: #616161;
+}
+.admin-panel-card-container {
+  background-color: #ff0000;
+  display: inline-flex;
+  padding: 20px 30px;
+  border-radius: 20px;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.blue {
+  background-color: blue;
+}
+.admin-panel-card-container-title {
+  border-bottom: 2px solid #dcdcdc;
+}
+.admin-panel-card-container-title h6 {
+  color: #fff;
+  font-weight: 500;
+  font-size: 25px;
+}
+.admin-panel-card-container-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-panel-card-container-content p {
+  margin: 0;
+  font-size: 30px;
+  color: #fff;
+}

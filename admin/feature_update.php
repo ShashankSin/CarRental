@@ -34,6 +34,8 @@ if(isset($_POST['submit'])){
 
     if ($query) {
         echo "<script>alert('You have successfully update the data');</script>";
+    header('Location: /projects/carrental/admin/feature.php');
+        
     } else {
       echo "Failed to Update data.";
     } 
@@ -119,9 +121,8 @@ if(isset($_POST['submit'])){
           <span style="font-weight: 800">Dashboard </span>
         </div>
         <div class="profile-content">
-          <img src="images/Profilepic.jpg" alt="profile-pic" />
-          <span>Shashank Singh</span>
-          <button><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+          <img src="images/admin.jpg" alt="profile-pic" />
+          <span>Admin</span>
         </div>
         <div class="nav-options">
           <span><i class="bi bi-grid-1x2"></i><a href="admindashboard.php">Dashboard</a></span>
@@ -129,7 +130,7 @@ if(isset($_POST['submit'])){
             ><i class="bi bi-card-checklist"></i><a href="#">Features</a></span
           >
           <span
-            ><i class="bi bi-calendar4-week"></i><a href="#">Schedule</a></span
+            ><i class="bi bi-person"></i><a href="Users.php">Users</a></span
           >
           <span><i class="bi bi-sliders"></i><a href="settings.php">Setting</a></span>
         </div>
@@ -261,7 +262,7 @@ if(isset($_POST['submit'])){
                         }
                     ?>
                         <div class="setting-button">
-                            <button type="Reset">Cancel</button>
+                            <button type="Reset"><a href="feature.php" style="color:#fff; text-decoration: none;">Cancel</a></button>
                             <button type="submit" name="submit">Submit</button>
                         </div>
                         </form>

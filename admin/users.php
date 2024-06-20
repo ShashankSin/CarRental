@@ -1,6 +1,5 @@
 <?php 
-
-require('include/db.php');
+    require('include/db.php');
   require('include/essentials.php');
   adminLogin();
   session_regenerate_id(true);
@@ -12,7 +11,7 @@ require('include/db.php');
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
+    <title>Features</title>
     <link rel="stylesheet" href="css/admin.css" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,9 +44,22 @@ require('include/db.php');
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src="Script/nav.js"></script>
+    <style>
+      body{
+        position: relative;
+      }
+    </style>
+    
   </head>
   <body>
-    <!-- nav-banner starts -->
     <nav>
       <div class="nav-banner">
         <div class="nav-logo">
@@ -58,102 +70,68 @@ require('include/db.php');
           <span>Admin</span>
         </div>
         <div class="nav-options">
-          <span><i class="bi bi-grid-1x2"></i><a href="#">Dashboard</a></span>
+          <span><i class="bi bi-grid-1x2"></i><a href="admindashboard.php">Dashboard</a></span>
           <span
-            ><i class="bi bi-card-checklist"></i><a href="feature.php">Features</a></span
+            ><i class="bi bi-card-checklist"></i><a href="#">Features</a></span
           >
           <span
             ><i class="bi bi-person"></i><a href="Users.php">Users</a></span
           >
           <span><i class="bi bi-sliders"></i><a href="settings.php">Setting</a></span>
         </div>
-        <!-- <div class="nav-mode">
-          <button>
-            <span></span>
-          </button>
-        </div> -->
       </div>
     </nav>
     <!-- nav-banner ends -->
 
     <!-- header starts -->
     <header>
-      <div class="hospital-content">
+    <div class="hospital-content">
         <div class="hospital-search">
-          
         </div>
         <div class="login-content">
           <a href="logout.php" style="margin-right: 0">Logout</a>
         </div>
       </div>
-      
-      <div class="admin-panel">
-          <div class="admin-panel-title">
-            <h2>PHP Admin Panel</h2>
-          </div>
-          <div class="admin-panel-card">
-            <div class="admin-panel-sub-title">
-              <h6>Dashboard</h6>
+      <div class="section-setting">
+        <div class="section-setting-title">
+            <h3>Features</h3>
+        </div>
+            
+            <div class="card-content">
+              <table cellpadding="0" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number of Cars Booked</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php 
+                          $q = "SELECT s.*, COUNT(b.c_id) AS cars_booked 
+                          FROM signup s
+                          LEFT JOIN booking b ON s.id = b.c_id
+                          GROUP BY s.id
+                          ORDER BY s.Name";
+                    $data = mysqli_query($con, $q);
+                    $i = 1;
+                    while($row = mysqli_fetch_assoc($data)){
+                        echo <<<EOL
+                        <tr>
+                            <td>{$i}</td>
+                            <td>{$row['Name']}</td>
+                            <td>{$row['Email']}</td>
+                            <td>{$row['cars_booked']}</td>
+                        </tr>
+                        EOL;
+                        $i++;
+                    }
+                        ?>
+                </tbody>
+              </table>
             </div>
-            <div class="admin-panel-card-container">
-              <div class="admin-panel-card-container-title">
-                <h6>Number of Users</h6>
-              </div>
-              <?php
-                $category_group="SELECT * from signup";
-                $category_group_run= mysqli_query($con,$category_group);
-                if ($category_total=mysqli_num_rows($category_group_run)){
-                  echo'
-                  
-                  <div class="admin-panel-card-container-content">
-                    <p>'.$category_total.'</p>
-                  </div>
-                  
-                  ';
-                }
-                else{
-                  echo'
-                  <div class="admin-panel-card-container-content">
-                    <p>NO Data</p>
-                  </div>
-                  
-                  ';
-
-                }
-              
-              ?>
-              
-            </div>
-            <div class="admin-panel-card-container blue">
-              <div class="admin-panel-card-container-title">
-                <h6>Number of Cars</h6>
-              </div>
-              <?php
-                $category_group="SELECT * from car_feature";
-                $category_group_run= mysqli_query($con,$category_group);
-                if ($category_total=mysqli_num_rows($category_group_run)){
-                  echo'
-                  
-                  <div class="admin-panel-card-container-content ">
-                    <p>'.$category_total.'</p>
-                  </div>
-                  
-                  ';
-                }
-                else{
-                  echo'
-                  <div class="admin-panel-card-container-content">
-                    <p>NO Data</p>
-                  </div>
-                  
-                  ';
-
-                }
-              
-              ?>
-              
-            </div>
-          </div>
+        </div>
       </div>
     </header>
     <!-- header ends -->
@@ -174,5 +152,10 @@ require('include/db.php');
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+
+    <script src="script/script.js">
+      
+    </script>
+    
   </body>
 </html>
